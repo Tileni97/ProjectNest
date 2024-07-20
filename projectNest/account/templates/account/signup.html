@@ -1,0 +1,54 @@
+{% extends 'core/base.html'%} {% block content %}
+<div class="max-w-xl mx-auto py-8 bg-teal-600 text-center rounded-lg shadow-md">
+  <h1 class="text-3xl text-white font-bold mb-6">Sign Up</h1>
+
+  <form class="space-y-4 px-8" method="post" action=".">
+    {% csrf_token %}
+    <div class="text-left">
+      <label class="text-white block mb-2">Name</label>
+      <input
+        name="name"
+        type="text"
+        class="w-full py-4 px-6 bg-slate-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+        required
+      />
+    </div>
+    <div class="text-left">
+      <label class="text-white block mb-2">E-mail</label>
+      <input
+        name="email"
+        type="email"
+        class="w-full py-4 px-6 bg-slate-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+        required
+      />
+    </div>
+
+    <div class="text-left">
+      <label class="text-white block mb-2">Password</label>
+      <input
+        name="password"
+        type="password"
+        class="w-full py-4 px-6 bg-slate-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+        required
+      />
+    </div>
+
+    <div class="text-left">
+      <label class="text-white block mb-2">Repeat Password</label>
+      <input
+        name="password2"
+        type="password"
+        class="w-full py-4 px-6 bg-slate-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+        required
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="mt-6 py-4 px-6 bg-white text-teal-600 font-bold rounded-lg shadow-md hover:bg-gray-200"
+    >
+      Sign up
+    </button>
+  </form>
+</div>
+{% endblock %}

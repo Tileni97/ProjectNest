@@ -38,24 +38,24 @@ class User(AbstractBaseUser, PermissionsMixin): # User class inherits from Abstr
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) # id field is a UUIDField
     email = models.EmailField(unique=True) # email field is an EmailField
     name = models.CharField(max_length=255) # name field is a CharField
+    
     is_active = models.BooleanField(default=True) # is_active field is a BooleanField
     is_staff = models.BooleanField(default=False) # is_staff field is a BooleanField
+    is_superuser = models.BooleanField(default=False) # is_superuser field is a BooleanField
+    
+    date_joined = models.DateTimeField(auto_now_add=True) # date_joined field is a DateTimeField
+    last_login = models.DateTimeField(blank=True, null=True) # last_login field is a DateTimeField
+
     created_at = models.DateTimeField(auto_now_add=True) # created_at field is a DateTimeField
     updated_at = models.DateTimeField(auto_now=True) # updated_at field is a DateTimeField
 
     objects = CustomUserManager() # objects field is an instance of CustomUserManager
 
     USERNAME_FIELD = 'email' # USERNAME_FIELD is set to email
+    EMAIL_FIELD = 'email' # EMAIL_FIELD is set to email
     REQUIRED_FIELDS = ['name'] # REQUIRED_FIELDS is set to name
 
-    def __str__(self): # __str__ method
-        return self.email # Returns the email
-
-    def get_full_name(self): # get_full_name method
-        return self.name # Returns the name
-
-    def get_short_name(self): # get_short_name method
-        return self.name # Returns the name
+    
 
 
 
