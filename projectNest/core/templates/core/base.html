@@ -3,42 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ProjectNest</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://bootswatch.com/5/solar/bootstrap.min.css"
+    />
   </head>
   <body>
-    <nav class="py-6 px-8 flex items-center justify-between bg-teal-700">
-      <h1 class="text-2xl text-white font-bold">
-        <a href="{% url 'core:index' %}">ProjectNest</a>
-      </h1>
-      <div class="space-x-4">
-        <a
-          href="{% url 'core:about' %}"
-          class="text-white font-bold hover:text-yellow-300"
-          >About</a
+    {% if messages %}
+    <div class="container mt-3">
+      {% for message in messages %}
+      <div
+        class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
+        role="alert"
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'core:index' %}">ProjectNest</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-        <a
-          href="{% url 'core:index' %}"
-          class="py-3 px-6 bg-blue-500 text-white font-bold rounded hover:bg-blue-400"
-          >Log in</a
-        >
-        <a
-          href="{% url 'account:signup' %}"
-          class="py-3 px-6 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-400"
-          >Sign up</a
-        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'core:about' %}">About</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'project:projects' %}"
+                >Projects</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a
+                class="btn btn-outline-light me-2"
+                href="{% url 'account:login' %}"
+                >Log in</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-warning" href="{% url 'account:signup' %}"
+                >Sign up</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </div>
       </div>
     </nav>
-    <main class="py-6 px-8">{% block content %} {% endblock %}</main>
-    <footer class="py-6 bg-teal-700 text-white">
-      <div class="container mx-auto text-center">
-        <p class="mb-4">© 2024 ProjectNest. All rights reserved.</p>
-        <div class="flex justify-center space-x-6">
-          <a href="#" class="hover:text-yellow-300">Privacy Policy</a>
-          <a href="#" class="hover:text-yellow-300">Terms of Service</a>
-          <a href="#" class="hover:text-yellow-300">Contact Us</a>
+
+    <main class="container py-4">{% block content %}{% endblock %}</main>
+
+    <footer class="bg-dark text-light py-4 mt-4">
+      <div class="container text-center">
+        <p class="mb-2">© 2024 ProjectNest. All rights reserved.</p>
+        <div class="mb-2">
+          <a href="#" class="text-light me-3">Privacy Policy</a>
+          <a href="#" class="text-light me-3">Terms of Service</a>
+          <a href="#" class="text-light">Contact Us</a>
         </div>
-        <p class="mt-4">Developed by Tileni</p>
+        <p class="mb-0">Developed by Tileni</p>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
