@@ -24,14 +24,14 @@ class CustomUserManager(UserManager): # CustomUserManager class inherits from Us
         return self._create_user(name, email, password, **extra_fields)
 
 
-    def create_superuser(self, name, email, password=None, **extra_fields): # create_superuser method takes in email, password, and extra_fields
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')    
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
-        return self._create_user(name, email, password, **extra_fields)
+    def create_superuser(self, name, email, password=None, **extra_fields): # superusers are the users who have all permissions to manage the application
+        extra_fields.setdefault('is_staff', True) # Set is_staff to True when creating a superuser
+        extra_fields.setdefault('is_superuser', True) # Set is_superuser to True
+        if extra_fields.get('is_staff') is not True: # Check if is_staff is True
+            raise ValueError('Superuser must have is_staff=True.')  
+        if extra_fields.get('is_superuser') is not True: # Check if is_superuser is True
+            raise ValueError('Superuser must have is_superuser=True.') 
+        return self._create_user(name, email, password, **extra_fields) # Create a superuser
 
 
 class User(AbstractBaseUser, PermissionsMixin): # User class inherits from AbstractBaseUser and PermissionsMixin
