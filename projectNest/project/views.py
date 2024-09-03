@@ -17,6 +17,11 @@ def projects(request):
     return render(request, 'project/projects.html', {'projects': projects})
 
 @login_required
+def project(request, pk):
+    projects = Project.objects.filter(created_by=request.user).get(pk=pk)
+    return render(request, 'project/projects.html', {'project': project})
+
+@login_required
 def add_project(request):
     if request.method == 'POST':
         name = request.POST.get('name', '').strip()

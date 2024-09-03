@@ -1,22 +1,23 @@
 {% extends 'core/base.html' %} {% block content %}
 <div class="mt-6 space-y-6 max-w-4xl mx-auto text-center">
-  <h1 class="text-3xl font-bold mb-4 text-[#556B2F]">Projects</h1>
+  <h1 class="text-3xl font-bold mb-4 text-[#556B2F]">{{project.name}}</h1>
   <a
-    href="{% url 'project:add' %}"
+    href="#"
     class="py-4 px-8 bg-[#556B2F] text-[#F5F5DC] inline-block rounded-lg hover:bg-[#4A5D23]"
-    >Add project</a
+    >Add todolist</a
   >
 
   <div class="mt-6 grid grid-cols-4 gap-4">
-    {% for project in projects %}
+    {% for todolist in todolist %}
     <div class="py-6 px-6 bg-[#F5F5DC] rounded-lg shadow-md hover:bg-[#E0E0D1]">
-      <a href="{% url 'project:project' project.id %}">
-        <h2 class="mb-4 text-xl text-[#556B2F]">{{project.name}}</h2>
-
-        <p class="text-sm text-[#556B2F]">{{ project.description }}</p>
+      <a href="#">
+        <h2 class="mb-4 text-xl text-[#556B2F]">{{todolist.name}}</h2>
+        <p class="text-sm text-[#556B2F]">{{ todolist.description }}</p>
       </a>
     </div>
     {% endfor %}
   </div>
   {% endblock %}
 </div>
+
+<!-- {% url 'todolist:todolist' todolist.id %}" -->
