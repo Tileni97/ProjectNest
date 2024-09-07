@@ -22,8 +22,11 @@ def projects(request):
 
 @login_required
 def project(request, pk):
-    projects = Project.objects.filter(created_by=request.user).get(pk=pk)
-    return render(request, 'project/projects.html', {'project': project})
+    project = Project.objects.filter(created_by=request.user).get(pk=pk)
+
+    return render(request, 'project/project.html', {
+        'project': project
+    })
 
 @login_required
 def add_project(request):
