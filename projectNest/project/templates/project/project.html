@@ -2,9 +2,19 @@
 <div class="mt-6 space-y-6 max-w-4xl mx-auto text-center">
   <h1 class="text-3xl font-bold mb-4 text-[#556B2F]">{{project.name}}</h1>
   <a
-    href="#"
-    class="py-4 px-8 bg-[#556B2F] text-[#F5F5DC] inline-block rounded-lg hover:bg-[#4A5D23]"
+    href="{% url 'todolist:add' project.id %}"
+    class="py-4 px-8 bg-emerald-600 text-white inline-block"
     >Add todolist</a
+  >
+  <a
+    href="{% url 'project:edit' project.id %}"
+    class="py-4 px-8 bg-sky-600 text-white inline-block"
+    >Edit</a
+  >
+  <a
+    href="{% url 'project:delete' project.id %}"
+    class="py-4 px-8 bg-amber-600 text-white inline-block"
+    >Delete</a
   >
 
   <div class="mt-6 grid grid-cols-4 gap-4">
